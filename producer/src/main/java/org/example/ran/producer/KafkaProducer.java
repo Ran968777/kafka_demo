@@ -13,4 +13,9 @@ public class KafkaProducer {
         kafkaTemplate.send(topic, message);
         System.out.println("Sent: " + message);
     }
+
+    public void sendMessagePartition(String topic, Integer partition, String message) {
+        kafkaTemplate.send(topic, partition, null, message);
+        System.out.println("Sent: " + message);
+    }
 }

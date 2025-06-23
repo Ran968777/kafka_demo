@@ -16,9 +16,18 @@ class ProducerApplicationTests {
     KafkaProducer kafkaProducer;
 
     @Test
-    public void testSendMessage() {
+    public void testSendMessage() throws InterruptedException {
         for (int i = 0; i < 20; i++) {
             kafkaProducer.sendMessage("test-topic", "hello kafka-eagle " + i);
+            Thread.sleep(5000);
+        }
+    }
+
+
+    @Test
+    public void testSendMessagePartition() throws InterruptedException {
+        for (int i = 0; i < 20; i++) {
+            kafkaProducer.sendMessagePartition("test-topic", i % 2, " Partition: " + i%2 +" ,hello java");
         }
     }
 }
